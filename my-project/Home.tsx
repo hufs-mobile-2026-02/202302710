@@ -27,6 +27,25 @@ export default function Home( {navigation}: Props) {
             <Button
                 title="Third Item"
                 onPress={()=>navigation.navigate('Details', {title: "Third Item"})}
+            />
+            <Button
+                title="First Stock Item"
+                onPress={()=>navigation.navigate('ItemDetails', {title: "First Stock Item",
+                    content: "First Item Content",
+                    stock: 1,
+                })}
+            />
+            <Button
+                title="Second Stock Item"
+                onPress={()=>navigation.navigate('ItemDetails', {title: "Second Stock Item",
+                    content: "Second Item Content",
+                    stock: 0,})}
             /> 
+            <Button
+                title="Third Stock Item"
+                onPress={()=>navigation.navigate('ItemDetails', {title: "Third Stock Item",
+                    content: "Third Item Content",
+                    stock: 200,})}
+            />
         </View>
     );
