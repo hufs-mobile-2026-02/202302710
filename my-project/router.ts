@@ -15,4 +15,5 @@ export type Routes = {
   Settings: undefined;
   WhereAmI: undefined;
   WhatsAroundMe: undefined;
+  WeatherAroundMe: undefined;
 };

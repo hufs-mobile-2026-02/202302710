@@ -9,6 +9,7 @@ import Home from './Home';
 import Settings from './Settings';
 import News from './News';
 import WhatsAroundMe from './GeoLocation/WhatsAroundMe';
+import WeatherAroundMe from './GeoLocation/WeatherAroundMe';
 
 const Drawer = createDrawerNavigator<Routes>();
 
@@ -53,6 +54,7 @@ export default function App() {
             component={WhatsAroundMe}
             listeners={{ focus: () => setIsOpen(false) }}
           />
+          <Drawer.Screen name="WeatherAroundMe" component={WeatherAroundMe} />
         </Drawer.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
