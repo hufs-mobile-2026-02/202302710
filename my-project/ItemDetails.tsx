@@ -17,7 +17,7 @@ export default function ItemDetails ({ route, navigation }: Props) {
     },
     [navigation, title]
   );
-  
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />

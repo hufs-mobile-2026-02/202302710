@@ -9,8 +9,10 @@ export type RootStackParamList = {
     };
 }
 
-export type Routes ={
-    Home: undefined;
-    News: undefined;
-    Settings: undefined;
-}
+export type Routes = {
+  Home: undefined;
+  News: undefined;
+  Settings: undefined;
+  WhereAmI: undefined;
+  WhatsAroundMe: undefined;
+};

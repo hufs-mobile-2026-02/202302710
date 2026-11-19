@@ -1,27 +1,17 @@
+import React from "react";
+import { View, Text, Button, StatusBar } from "react-native";
+import styles from "./styles";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./router";
 
-import { View, Text, Button, StyleSheet } from 'react-native';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import type { RootStackParamList } from './router';
-
-type Props = NativeStackScreenProps<RootStackParamList, 'Settings'>;
+type Props = NativeStackScreenProps<RootStackParamList>;
 
 export default function Settings({ navigation }: Props) {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <Text>Settings Screen</Text>
-      <Button
-        title="Home으로 이동"
-        onPress={() => navigation.push('Home')}
-      />
+      <Button title="Home" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f2f2',
-  },
-});

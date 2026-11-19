@@ -1,34 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Platform } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './styles';
-import Box from './Box';
+import 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { TouchableOpacity, Text } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList, Routes } from './router';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Routes } from './router';
 import Home from './Home';
 import Settings from './Settings';
-import Details from './Details';
-import ItemDetails from './ItemDetails';
 import News from './News';
+import WhatsAroundMe from './GeoLocation/WhatsAroundMe';
 
-const Stack = createNativeStackNavigator<RootStackParamList> ();
-
-const Tab = createBottomTabNavigator<Routes>();
 const Drawer = createDrawerNavigator<Routes>();
 
-
 export default function App() {
-  return (
-    <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="News" component={News} />
-          <Drawer.Screen name="Settings" component={Settings} />
-        </Drawer.Navigator>
+  const [isOpen, setIsOpen] = useState(false);
 
-    </NavigationContainer>
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            drawerType: isOpen ? 'permanent' : 'front',
+            drawerStyle: { width: isOpen ? 240 : 0 },
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => setIsOpen((prev) => !prev)}
+                style={{ marginLeft: 16, padding: 4 }}
+              >
+                <Text style={{ fontSize: 22 }}>≡</Text>
+              </TouchableOpacity>
+            ),
+          }}
+        >
+          <Drawer.Screen
+            name="Home"
+            component={Home}
+            listeners={{ focus: () => setIsOpen(false) }}
+          />
+          <Drawer.Screen
+            name="News"
+            component={News}
+            listeners={{ focus: () => setIsOpen(false) }}
+          />
+          <Drawer.Screen
+            name="Settings"
+            component={Settings}
+            listeners={{ focus: () => setIsOpen(false) }}
+          />
+          <Drawer.Screen
+            name="WhatsAroundMe"
+            component={WhatsAroundMe}
+            listeners={{ focus: () => setIsOpen(false) }}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
